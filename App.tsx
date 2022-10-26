@@ -1,17 +1,15 @@
-import {StatusBar} from 'expo-status-bar';
-import {Button, StyleSheet, Text, View} from 'react-native';
-import Hydrate from './hydrate/Hydrate';
+import { NavigationContainer } from '@react-navigation/native';
+import BottomNavigationBar from './components/bottom-navigation-bar/BottomNavigationBar';
+
 
 export default function App() {
     return (
-        <View style={styles.container}>
-            <Text>Hey dude don't feel as humiliated but u r a machine like everybody.</Text>
-            <StatusBar style="auto"/>
-            <Hydrate/>
-        </View>
+        <NavigationContainer>
+           <BottomNavigationBar />
+        </NavigationContainer>
     );
 }
-
+/*
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -20,3 +18,4 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
 });
+*/

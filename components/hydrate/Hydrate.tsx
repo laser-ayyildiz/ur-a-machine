@@ -1,6 +1,5 @@
-import { StatusBar } from 'expo-status-bar';
-import { useState } from 'react';
-import { Button, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { Button, Text, StyleSheet, View} from 'react-native';
 
 const Hydrate = () => {
 
@@ -17,10 +16,9 @@ const Hydrate = () => {
     };
 
     return (
-        <View>
+        <View style={[styles.container, { backgroundColor: '#ecf0f1' }]}>
             <Text>Let's hydrate us</Text>
             <Text>{count}</Text>
-            <StatusBar style="auto" />
             <Button
                 onPress={() => increaseCount()}
                 title={"Drink"}
@@ -34,5 +32,7 @@ const Hydrate = () => {
         </View>
     );
 };
-
+const styles = StyleSheet.create({
+    container: { flex: 1, justifyContent: 'center', alignItems: 'center' },
+  });
 export default Hydrate;
