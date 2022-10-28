@@ -15,6 +15,11 @@ const Hydrate = () => {
         console.log("undrink(:D) water");
     };
 
+    const reset = () => {
+        setCount(0);
+        console.log("reset");
+    }
+
     return (
         <View style={[styles.container, { backgroundColor: '#ecf0f1' }]}>
             <Text>Let's hydrate us</Text>
@@ -26,7 +31,13 @@ const Hydrate = () => {
             <Button
                 color="red"
                 onPress={() => decreaseCount()}
-                title="Opps! I clicked twice :("
+                title="Oops! I clicked twice :("
+                disabled={count === 0}
+            />
+            <Button
+                color="gray"
+                onPress={() => reset()}
+                title="Reset"
                 disabled={count === 0}
             />
         </View>

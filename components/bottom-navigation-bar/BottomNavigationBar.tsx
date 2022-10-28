@@ -3,31 +3,31 @@ import Budget from '../budget/Budget';
 import Home from '../home/Home';
 import Hydrate from '../hydrate/Hydrate';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {BUDGET, HOME, HYDRATE} from "../../constant/pages";
+import {iconAssignments} from "../../constant/icon-assignments";
 
 const Tab = createBottomTabNavigator();
 
 const BottomNavigationBar = () => {
     return (
-        <Tab.Navigator screenOptions={({route}) => ({
-            tabBarIcon: ({focused, color, size}) => {
-                let iconName;
-                if (route.name === 'Hydrate') {
-                    iconName = focused ? 'water' : 'water-outline';
-                } else if (route.name === 'Home') {
-                    iconName = focused ? 'home' : 'home-outline';
-                } else if (route.name === 'Budget') {
-                    iconName = focused ? 'wallet' : 'wallet-outline';
-                }
-                return <Ionicons name={iconName} size={size} color={color} />;
-            },
-            tabBarActiveTintColor: 'black',
-            tabBarInactiveTintColor: 'gray',
-        })}>
-            <Tab.Screen name="Home" component={Home}/>
-            <Tab.Screen name="Hydrate" component={Hydrate}/>
-            <Tab.Screen name="Budget" component={Budget}/>
+        <Tab.Navigator screenOptions={({route}) => getTabBarOptions(route)}>
+            <Tab.Screen name={HOME} component={Home}/>
+            <Tab.Screen name={HYDRATE} component={Hydrate}/>
+            <Tab.Screen name={BUDGET} component={Budget}/>
         </Tab.Navigator>
     )
 }
 
-export default BottomNavigationBar
+const getTabBarOptions = (route: any) => {
+    return {
+        tabBarIcon: ({focused, color, size}: any) => {
+            const iconName = focused ? iconAssignments[route.name].focused : iconAssignments[route.name].default;
+            return <Ionicons name={iconName} color={color} size={size}/>;
+        },
+        tabBarActiveTintColor: 'black',
+        tabBarInactiveTintColor: 'gray'
+    }
+}
+
+
+export default BottomNavigationBar;
