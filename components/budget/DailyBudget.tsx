@@ -1,28 +1,54 @@
-import {Button, Text, TextInput, TextInputComponent, View} from "react-native";
+import {Button, Text, TextInput, View} from "react-native";
 import {useState} from "react";
-import input from "../../styles/input-styles";
+import {getExpenseTypes} from "../../constant/expense-types";
+import {Picker} from "react-native-ui-lib";
+import inputStyles from "../../styles/input-styles";
 
 const DailyBudget = ({max = 200}) => {
     const [balance, setBalance] = useState(max);
     const [newExpense, setNewExpense] = useState(0);
+    const [expenseType, setExpenseType] = useState(null);
 
     const onNewExpense = () => {
-        console.log(newExpense)
+        if (expenseType === null) {
+            return;
+        }
         setBalance(balance - newExpense);
         setNewExpense(0);
+        setExpenseType(null)
+    };
+
+    const onSelectType = (type) => {
+        setExpenseType(type);
     };
 
     return (
-        <View padding-s4 bg-white style={{height: 60}}>
+        <View>
             <Text>Daily Balance: {balance}</Text>
             <Text>Add New Expense</Text>
-            <TextInput
-                style={input.default}
-                onChangeText={setNewExpense}
-                value={newExpense}
-                keyboardType="numeric"
-            />
-            <Button title="Expense" onPress={onNewExpense} disabled={newExpense == 0}/>
+            <View style={{flexDirection: 'row'}}>
+                <TextInput
+                    style={inputStyles.textInputwithPickerInARow}
+                    onChangeText={setNewExpense}
+                    value={newExpense}
+                    keyboardType="numeric"
+                    maxLength={7}
+                />
+                <Picker
+                    style={inputStyles.pickerwithTextInputInARow}
+                    value={expenseType}
+                    onChange={onSelectType}
+                    useWheelPicker
+                    placeholder={'Select an expense type'}
+                    migrateTextField
+                    enableModalBlur
+                >
+                    {getExpenseTypes().map((exType, index) => (
+                        <Picker.Item key={index} value={exType} label={exType} disabled={false}/>
+                    ))}
+                </Picker>
+            </View>
+            <Button title="Expense" onPress={onNewExpense} disabled={newExpense == 0 || expenseType === null}/>
         </View>
     )
 };
