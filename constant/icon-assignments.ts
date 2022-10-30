@@ -1,14 +1,18 @@
 export const iconAssignments: any = {
-    Home: {
+    "Home": {
         default: 'home-outline',
         focused: 'home'
     },
-    Hydrate: {
+    "Hydrate": {
         default: 'water-outline',
         focused: 'water'
     },
-    Budget: {
-        default: 'wallet-outline',
-        focused: 'wallet'
+    "Daily Budget": {
+        default: 'card-outline',
+        focused: 'card'
+    },
+    "Settings": {
+        default: 'settings-outline',
+        focused: 'settings'
     },
 };

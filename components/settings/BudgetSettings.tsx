@@ -1,13 +1,14 @@
-import {StyleSheet, Text, TextInput, View} from 'react-native'
 import {useState} from "react";
+import {Text, TextInput, View} from "react-native";
+import input from "../../styles/input-styles";
 
-const Budget = () => {
+const BudgetSettings = () => {
     const [maxSpendPerDay, setMaxSpendPerDay] = useState("");
 
     const maxSpendPerDayOnChange = (spend) => {
-       if (!isSpendValid(spend)) {
-           return;
-       }
+        if (!isSpendValid(spend)) {
+            return;
+        }
         setMaxSpendPerDay(spend);
     };
 
@@ -22,10 +23,10 @@ const Budget = () => {
     }
 
     return (
-        <View>
+        <View padding-s4 bg-white style={{height: 60}}>
             <Text>Type your max</Text>
             <TextInput
-                style={styles.input}
+                style={input.default}
                 onChangeText={maxSpendPerDayOnChange}
                 value={maxSpendPerDay}
                 placeholder="Max 10000"
@@ -35,13 +36,4 @@ const Budget = () => {
     )
 }
 
-const styles = StyleSheet.create({
-    input: {
-        height: 40,
-        margin: 12,
-        borderWidth: 1,
-        padding: 10,
-    },
-});
-
-export default Budget
+export default BudgetSettings;

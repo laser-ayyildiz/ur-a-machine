@@ -1,10 +1,11 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import Budget from '../budget/Budget';
 import Home from '../home/Home';
 import Hydrate from '../hydrate/Hydrate';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {BUDGET, HOME, HYDRATE} from "../../constant/pages";
+import {DAILY_BUDGET, HOME, HYDRATE, SETTINGS} from "../../constant/pages";
 import {iconAssignments} from "../../constant/icon-assignments";
+import DailyBudget from "../budget/DailyBudget";
+import Settings from "../settings/Settings";
 
 const Tab = createBottomTabNavigator();
 
@@ -13,7 +14,8 @@ const BottomNavigationBar = () => {
         <Tab.Navigator screenOptions={({route}) => getTabBarOptions(route)}>
             <Tab.Screen name={HOME} component={Home}/>
             <Tab.Screen name={HYDRATE} component={Hydrate}/>
-            <Tab.Screen name={BUDGET} component={Budget}/>
+            <Tab.Screen name={DAILY_BUDGET} component={DailyBudget}/>
+            <Tab.Screen name={SETTINGS} component={Settings}/>
         </Tab.Navigator>
     )
 }
